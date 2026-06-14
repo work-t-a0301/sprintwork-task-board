@@ -4,28 +4,37 @@
 
 ## 技術スタック
 
-※ 決定後に更新すること
-
-- **フロントエンド**: （未定）
-- **バックエンド**: （未定）
-- **データストア**: （未定）
+- **フロントエンド**: React 18 + Vite
+- **スタイリング**: CSS3（CSS Modules なし、BEM 命名規則）
+- **バックエンド**: なし（フロントエンド完結）
+- **データストア**: useState（ブラウザメモリのみ）
 
 ## ファイル構成
 
-※ 実装開始後に更新すること
-
 ```
 task-board/
-└── （未定）
+├── index.html
+├── package.json
+├── vite.config.js
+├── .gitignore
+└── src/
+    ├── main.jsx
+    ├── index.css          # グローバルリセット
+    ├── App.jsx
+    ├── App.css            # 全コンポーネントのスタイル
+    └── components/
+        ├── TaskInput.jsx  # タスク入力フォーム
+        ├── TaskList.jsx   # タスク一覧
+        └── TaskItem.jsx   # タスク1件
 ```
 
 ## 開発ルール
 
-- `innerHTML` の使用は禁止。XSS防止のため `textContent` / `createElement` を使うこと。
-- グローバル変数は最小限に抑える。
+- JSX 内で `dangerouslySetInnerHTML` は使用禁止。
+- グローバル変数は使わない。状態は React の useState で管理する。
 - `console.log` はデバッグ用途のみ。本番コードに残さない。
 - コメントは「なぜ（WHY）」が自明でない箇所にのみ記述する。
-- スタイルは inline style を書かず、CSS ファイルにまとめる。
+- inline style は書かず、`App.css` にまとめる。
 
 ## Git 運用ルール
 
@@ -48,4 +57,7 @@ https://github.com/work-t-a0301/sprintwork-task-board.git
 
 ## 動作確認
 
-※ 実装開始後に更新すること
+```bash
+npm install   # 初回のみ
+npm run dev   # 開発サーバー起動 → http://localhost:5173
+```
