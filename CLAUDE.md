@@ -4,10 +4,11 @@
 
 ## 技術スタック
 
-- **フロントエンド**: React 18 + Vite
+- **フロントエンド**: React 18 + Vite 5
 - **スタイリング**: CSS3（CSS Modules なし、BEM 命名規則）
 - **バックエンド**: なし（フロントエンド完結）
-- **データストア**: useState（ブラウザメモリのみ）
+- **データ永続化**: localStorage（`task-board-tasks` キーで保存、ページリロード後も維持）
+- **デプロイ**: GitHub Pages（GitHub Actions で main プッシュ時に自動デプロイ）
 
 ## ファイル構成
 
@@ -26,6 +27,31 @@ task-board/
         ├── TaskInput.jsx  # タスク入力フォーム
         ├── TaskList.jsx   # タスク一覧
         └── TaskItem.jsx   # タスク1件
+```
+
+## 命名規約
+
+### コンポーネント
+- ファイル名・関数名ともに **PascalCase**（例: `TaskInput.jsx`, `function TaskInput`）
+- `src/components/` 以下に配置する
+
+### Props・変数・関数
+| 種類 | 規則 | 例 |
+|------|------|----|
+| Props | camelCase | `onAdd`, `onToggle`, `onDelete` |
+| state 変数 | camelCase | `tasks`, `value` |
+| イベントハンドラ | `handle` プレフィックス + PascalCase | `handleSubmit` |
+| 定数（モジュールスコープ） | SCREAMING_SNAKE_CASE | `STORAGE_KEY` |
+
+### CSS クラス（BEM）
+- **Block**: コンポーネント名をケバブケースで（例: `task-input`, `task-item`）
+- **Element**: `block__element`（例: `task-input__field`, `task-item__text`）
+- **Modifier**: `block--modifier`（例: `task-item--completed`）
+
+```
+.task-item           ← Block
+.task-item__text     ← Element
+.task-item--completed ← Modifier
 ```
 
 ## 開発ルール
